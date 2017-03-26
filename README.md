@@ -1,2 +1,2 @@
 # Huawei-Android-App
-Hachathon 2017 semifinal
+Hackathon 2017 semifinal
