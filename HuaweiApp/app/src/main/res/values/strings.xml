@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">HuaweiApp</string>
+
+    <string name="input_password">Password</string>
+    <string name="input_login">Login</string>
+    <string name="button_log_in">Log in</string>
+    <string name="drawer_item_profile">Profile</string>
+    <string name="drawer_item_news">News</string>
+    <string name="drawer_item_support">Support</string>
+
+
 </resources>
