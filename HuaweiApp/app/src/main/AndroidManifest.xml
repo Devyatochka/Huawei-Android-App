@@ -21,7 +21,8 @@
 
         <activity android:name=".Activity.MainMenuActivity"/>
 
-        <activity android:name=".Activity.SendEmailActivity"/>
+        <activity android:name=".Activity.SendEmailActivity"
+            android:parentActivityName=".Activity.MainMenuActivity"/>
     </application>
 
 </manifest>

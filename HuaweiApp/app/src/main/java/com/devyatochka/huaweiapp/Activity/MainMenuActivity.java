@@ -31,7 +31,10 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mToolBar = (Toolbar) findViewById(R.id.toolbar);
+        mToolBar = (Toolbar) findViewById(R.id.toolbarMain);
+        setSupportActionBar(mToolBar);
+
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         createNavigationDrawer();
 

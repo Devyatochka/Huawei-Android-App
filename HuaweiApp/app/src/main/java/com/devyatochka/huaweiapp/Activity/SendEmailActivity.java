@@ -3,6 +3,7 @@ package com.devyatochka.huaweiapp.Activity;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -33,8 +34,14 @@ public class SendEmailActivity extends AppCompatActivity implements SendEmailTas
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_email);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarEmail);
         setSupportActionBar(toolbar);
+
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         floatButton = (FloatingActionButton) findViewById(R.id.fab);
         subject = (EditText) findViewById(R.id.subject);
@@ -73,8 +80,8 @@ public class SendEmailActivity extends AppCompatActivity implements SendEmailTas
 
     @Override
     public void processFinish(boolean result) {
-        if (result) {
-            finish();
-        }
+        finish();
     }
+
+
 }
