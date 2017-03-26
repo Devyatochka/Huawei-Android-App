@@ -79,6 +79,7 @@ public class MainMenuActivity extends AppCompatActivity {
                         Intent sendEmail = new Intent(getApplicationContext(), SendEmailActivity.class);
                         startActivity(sendEmail);
 
+
                         return false;
                     }
                 });

@@ -2,6 +2,7 @@ package com.devyatochka.huaweiapp.AssynkTask;
 
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
+import android.os.CountDownTimer;
 import android.util.Log;
 
 import com.devyatochka.huaweiapp.Activity.MainMenuActivity;
@@ -21,7 +22,14 @@ public class SendEmailTask extends AsyncTask<Void, Void, Boolean> {
     private ProgressDialog progressDialog;
 
 
-    public SendEmailTask(Mail mail, SendEmailActivity activity) {
+    public interface SendEmailResponse {
+        void processFinish(boolean result);
+    }
+
+    public SendEmailResponse delegate = null;
+
+    public SendEmailTask(SendEmailResponse delegate, Mail mail, SendEmailActivity activity){
+        this.delegate = delegate;
         this.mail = mail;
         this.activity = activity;
         this.progressDialog = new ProgressDialog(this.activity);
@@ -70,5 +78,18 @@ public class SendEmailTask extends AsyncTask<Void, Void, Boolean> {
     protected void onPostExecute(Boolean result) {
         super.onPostExecute(result);
         progressDialog.dismiss();
+        new CountDownTimer(500, 1000) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                delegate.processFinish(true);
+            }
+
+        }.start();
     }
 }

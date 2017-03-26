@@ -17,7 +17,7 @@ import com.devyatochka.huaweiapp.R;
  * Created by alexbelogurow on 26.03.17.
  */
 
-public class SendEmailActivity extends AppCompatActivity {
+public class SendEmailActivity extends AppCompatActivity implements SendEmailTask.SendEmailResponse {
 
     private static final String SENDER = "devyatochkabmstu@gmail.com";
     private static final String PASSWORD = "E6f9H0a2";
@@ -51,7 +51,11 @@ public class SendEmailActivity extends AppCompatActivity {
     }
 
     private void sendMessage() {
-        SendEmailTask email = new SendEmailTask(
+        SendEmailTask emailTask = new SendEmailTask(new SendEmailTask.SendEmailResponse() {
+            @Override
+            public void processFinish(boolean result) {
+                finish();
+            }},
                 new Mail(SENDER,
                         PASSWORD,
                         GETTER,
@@ -59,11 +63,18 @@ public class SendEmailActivity extends AppCompatActivity {
                         body.getText().toString()),
                 this);
 
-        email.execute();
+        emailTask.execute();
     }
 
     public void displayMessage(String message) {
         Snackbar.make(findViewById(R.id.fab), message, Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
+    }
+
+    @Override
+    public void processFinish(boolean result) {
+        if (result) {
+            finish();
+        }
     }
 }
