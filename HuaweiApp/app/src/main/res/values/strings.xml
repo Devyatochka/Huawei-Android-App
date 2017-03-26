@@ -8,5 +8,32 @@
     <string name="drawer_item_news">News</string>
     <string name="drawer_item_support">Support</string>
 
+    <string name="default_fullname">Full Name</string>
+    <string name="default_login">Login</string>
+    <string name="default_password">Password</string>
+    <string name="default_phone">88005553535</string>
+    <string name="create_button">Create account</string>
+    <string name="create_new_account">No account yet? Create one</string>
+    <string name="login_label">Already a member? Login</string>
+
+    <!-- For saving profile -->
+    <integer name="id">-1</integer>
+    <!--                    -->
+
+    <string-array name="model_phone">
+        <item>P9Plus</item>
+        <item>Y3II</item>
+        <item>P9Lite</item>
+        <item>Honor8</item>
+        <item>Nova</item>
+        <item>Honor6X</item>
+        <item>Honor8Pro</item>
+        <item>Honor5A</item>
+        <item>Honor5X</item>
+        <item>Honor4CPro</item>
+        <item>P9</item>
+        <item>Honor4C</item>
+        <item>Nova</item>
+    </string-array>
 
 </resources>

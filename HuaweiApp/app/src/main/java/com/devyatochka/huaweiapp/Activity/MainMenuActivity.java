@@ -40,6 +40,12 @@ public class MainMenuActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+        finish();
+    }
+
     private void createNavigationDrawer() {
         AccountHeader headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
