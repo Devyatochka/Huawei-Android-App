@@ -1,13 +1,10 @@
 package com.devyatochka.huaweiapp.Activity;
 
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 
 import com.devyatochka.huaweiapp.R;
@@ -41,10 +38,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
         createNavigationDrawer();
 
-
-
     }
-
 
     @Override
     public void onBackPressed() {
@@ -116,6 +110,5 @@ public class MainMenuActivity extends AppCompatActivity {
                 )
                 .withSelectedItem(2)
                 .build();
-
     }
 }
