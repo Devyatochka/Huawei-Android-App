@@ -44,9 +44,8 @@ public class SendEmailActivity extends AppCompatActivity implements SendEmailTas
         }
 
         floatButton = (FloatingActionButton) findViewById(R.id.fab);
-        subject = (EditText) findViewById(R.id.subject);
-        body = (EditText) findViewById(R.id.body);
-        recipient = (EditText) findViewById(R.id.recipient);
+        subject = (EditText) findViewById(R.id.editTextSubject);
+        body = (EditText) findViewById(R.id.editTextBody);
 
 
         floatButton.setOnClickListener(new View.OnClickListener() {
