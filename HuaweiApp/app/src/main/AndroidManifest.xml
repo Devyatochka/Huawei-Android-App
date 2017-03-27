@@ -22,7 +22,12 @@
         <activity android:name=".Activity.MainMenuActivity"/>
 
         <activity android:name=".Activity.SendEmailActivity"
-            android:parentActivityName=".Activity.MainMenuActivity"/>
+            android:parentActivityName=".Activity.MainMenuActivity"
+            android:label="Send Email"/>
+
+        <activity android:name=".Activity.ProfileActivity"
+            android:parentActivityName=".Activity.MainMenuActivity"
+            android:label="Profile"/>
     </application>
 
 </manifest>

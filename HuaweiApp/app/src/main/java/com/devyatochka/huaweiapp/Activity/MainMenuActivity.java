@@ -1,12 +1,17 @@
 package com.devyatochka.huaweiapp.Activity;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
+import com.devyatochka.huaweiapp.AssynkTask.ProfileTask;
+import com.devyatochka.huaweiapp.Helper.Profile;
 import com.devyatochka.huaweiapp.R;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
@@ -18,6 +23,9 @@ import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * Created by alexbelogurow on 26.03.17.
  */
@@ -25,6 +33,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 public class MainMenuActivity extends AppCompatActivity {
 
     private Toolbar mToolBar;
+    public static Profile profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +47,12 @@ public class MainMenuActivity extends AppCompatActivity {
 
         createNavigationDrawer();
 
+
+        SharedPreferences sharedPreferences = getSharedPreferences("current_id", Context.MODE_PRIVATE);
+        long id = sharedPreferences.getInt("id", -1);
+        Log.i("id_mainMenu", id+"");
+        ProfileTask task = new ProfileTask((int)(long)id, this);
+        task.execute();
     }
 
     @Override
@@ -70,7 +85,16 @@ public class MainMenuActivity extends AppCompatActivity {
         PrimaryDrawerItem item1 = new PrimaryDrawerItem()
                 .withIdentifier(1)
                 .withName(R.string.drawer_item_profile)
-                .withIcon(R.drawable.ic_profile);
+                .withIcon(R.drawable.ic_profile)
+                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        Intent getProfile = new Intent(getApplicationContext(), ProfileActivity.class);
+                        startActivity(getProfile);
+
+                        return false;
+                    }
+                });
 
 
         SecondaryDrawerItem item2 = new SecondaryDrawerItem()
@@ -110,5 +134,31 @@ public class MainMenuActivity extends AppCompatActivity {
                 )
                 .withSelectedItem(2)
                 .build();
+    }
+
+    public void parseJson(String result) {
+        String fullName,
+                login,
+                password,
+                numberPhone,
+                modelPhone;
+        long id;
+
+        try {
+            JSONObject jsonObject = new JSONObject(result);
+            JSONObject response = jsonObject.getJSONObject("response");
+            Log.i("id_json", response.toString());
+
+            fullName = response.getString("full_name");
+            login = response.getString("login");
+            password = response.getString("password");
+            numberPhone = response.getString("number_phone");
+            modelPhone = response.getString("model_phone");
+            id = response.getLong("id");
+
+            profile = new Profile(fullName, login, password, numberPhone, modelPhone, id);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }

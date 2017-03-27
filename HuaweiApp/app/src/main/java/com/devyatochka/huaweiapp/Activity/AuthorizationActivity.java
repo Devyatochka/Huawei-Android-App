@@ -36,11 +36,14 @@ public class AuthorizationActivity extends AppCompatActivity {
         loginButton = (Button) findViewById(R.id.btn_login);
         signupLink = (TextView) findViewById(R.id.link_signup);
 
-        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        /*SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
         int defaultValue = getResources().getInteger(R.integer.id);
-        long highScore = sharedPref.getInt("id", defaultValue);
+        long highScore = sharedPref.getInt("id", defaultValue);*/
+        SharedPreferences sharedPreferences = getSharedPreferences("current_id", Context.MODE_PRIVATE);
+        long id = sharedPreferences.getInt("id", -1);
 
-        if (highScore != -1) {
+
+        if (id != -1) {
             Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
             startActivity(intent);
         }

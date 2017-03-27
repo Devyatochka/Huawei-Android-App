@@ -1,14 +1,19 @@
 package com.devyatochka.huaweiapp.AssynkTask;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.devyatochka.huaweiapp.Activity.MainMenuActivity;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -56,7 +61,9 @@ public class ProfileTask extends AsyncTask<Void,Void,String> {
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
+
+
         // To do in parse JSON //
-        //this.activity.parseJson(result);
+        this.activity.parseJson(result);
     }
 }

@@ -113,10 +113,18 @@ public class SignupActivity extends AppCompatActivity {
             }
             else if (jObj.getString("state").equals("ok")) {
                 JSONObject response = jObj.getJSONObject("response");
-                SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+
+
+                /*SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putInt("id", response.getInt("id"));
-                editor.commit();
+                editor.commit();*/
+
+                SharedPreferences mySharedPreferences = getSharedPreferences("current_id", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = mySharedPreferences.edit();
+                editor.putInt("id", response.getInt("id"));
+                editor.apply();
+
                 onSignupSuccess();
             }
         } catch (JSONException e) {

@@ -20,7 +20,8 @@ import com.devyatochka.huaweiapp.R;
 
 public class SendEmailActivity extends AppCompatActivity implements SendEmailTask.SendEmailResponse {
 
-    private static final String SENDER = "devyatochkabmstu@gmail.com";
+    private static final String SENDER = "admin@devyatochka.fvds.ru";
+            //"devyatochkabmstu@gmail.com";
     private static final String PASSWORD = "E6f9H0a2";
     // TODO add "huawei.task@best-bmstu.ru" to getter
     private static final String[] GETTER = { "alexbelogur@yandex.ru" };
@@ -28,15 +29,15 @@ public class SendEmailActivity extends AppCompatActivity implements SendEmailTas
     private EditText subject;
     private EditText body;
     private EditText recipient;
+    private Toolbar toolbar;
     private FloatingActionButton floatButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_email);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarEmail);
+        toolbar = (Toolbar) findViewById(R.id.toolbarEmail);
         setSupportActionBar(toolbar);
-
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {

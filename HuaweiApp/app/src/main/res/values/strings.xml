@@ -16,6 +16,12 @@
     <string name="create_new_account">No account yet? Create one</string>
     <string name="login_label">Already a member? Login</string>
 
+    <string name="email_textView_to">To</string>
+    <string name="email_editText_to">huawei.task@best-bmstu.ru</string>
+    <string name="email_textView_subject">Subject</string>
+    <string name="email_editText_subject">Your problem</string>
+    <string name="email_editText_body">Enter text</string>
+
     <!-- For saving profile -->
     <integer name="id">-1</integer>
     <!--                    -->
