@@ -27,6 +27,7 @@ public class SendEmailActivity extends AppCompatActivity implements SendEmailTas
 
     private EditText subject;
     private EditText body;
+    private EditText recipient;
     private FloatingActionButton floatButton;
 
     @Override
@@ -43,8 +44,9 @@ public class SendEmailActivity extends AppCompatActivity implements SendEmailTas
         }
 
         floatButton = (FloatingActionButton) findViewById(R.id.fab);
-        subject = (EditText) findViewById(R.id.editTextSubject);
-        body = (EditText) findViewById(R.id.editTextBody);
+        subject = (EditText) findViewById(R.id.subject);
+        body = (EditText) findViewById(R.id.body);
+        recipient = (EditText) findViewById(R.id.recipient);
 
 
         floatButton.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +61,7 @@ public class SendEmailActivity extends AppCompatActivity implements SendEmailTas
         SendEmailTask emailTask = new SendEmailTask(new SendEmailTask.SendEmailResponse() {
             @Override
             public void processFinish(boolean result) {
-
+                finish();
             }},
                 new Mail(SENDER,
                         PASSWORD,
