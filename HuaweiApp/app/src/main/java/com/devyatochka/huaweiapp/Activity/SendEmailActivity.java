@@ -6,12 +6,14 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
 import com.devyatochka.huaweiapp.AssynkTask.SendEmailTask;
 import com.devyatochka.huaweiapp.Helper.Mail;
 
+import com.devyatochka.huaweiapp.Helper.Profile;
 import com.devyatochka.huaweiapp.R;
 
 /**
@@ -20,17 +22,16 @@ import com.devyatochka.huaweiapp.R;
 
 public class SendEmailActivity extends AppCompatActivity implements SendEmailTask.SendEmailResponse {
 
-    private static final String SENDER = "admin@devyatochka.fvds.ru";
-            //"devyatochkabmstu@gmail.com";
+    private static final String SENDER = "devyatochkabmstu@gmail.com";
     private static final String PASSWORD = "E6f9H0a2";
     // TODO add "huawei.task@best-bmstu.ru" to getter
     private static final String[] GETTER = { "alexbelogur@yandex.ru" };
 
     private EditText subject;
     private EditText body;
-    private EditText recipient;
     private Toolbar toolbar;
     private FloatingActionButton floatButton;
+    private String bodyWithContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,16 +49,21 @@ public class SendEmailActivity extends AppCompatActivity implements SendEmailTas
         subject = (EditText) findViewById(R.id.editTextSubject);
         body = (EditText) findViewById(R.id.editTextBody);
 
+        final Profile profile = MainMenuActivity.profile;
+        bodyWithContext = body.getText().toString();// + profile.toString();
 
         floatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Log.i("email", body.getText().toString() + profile.toString());
                 sendMessage();
             }
         });
     }
 
     private void sendMessage() {
+        final Profile profile = MainMenuActivity.profile;
+
         SendEmailTask emailTask = new SendEmailTask(new SendEmailTask.SendEmailResponse() {
             @Override
             public void processFinish(boolean result) {
@@ -67,7 +73,7 @@ public class SendEmailActivity extends AppCompatActivity implements SendEmailTas
                         PASSWORD,
                         GETTER,
                         subject.getText().toString(),
-                        body.getText().toString()),
+                        body.getText().toString() + "\n\n" + profile.toString()),
                 this);
 
         emailTask.execute();

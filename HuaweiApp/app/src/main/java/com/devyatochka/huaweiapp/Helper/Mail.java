@@ -23,8 +23,7 @@ import javax.mail.internet.MimeMultipart;
  */
 
 public class Mail extends javax.mail.Authenticator {
-    private static final String PORT = "25";
-            //"425";  // default smtp port
+    private static final String PORT = "425";  // default smtp port
     private static final String S_PORT = "465"; // default socketfactory port;
     private static final String HOST = "smtp.gmail.com";   // default smtp server
 

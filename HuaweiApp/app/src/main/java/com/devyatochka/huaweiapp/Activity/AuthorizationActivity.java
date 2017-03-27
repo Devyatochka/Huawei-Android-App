@@ -71,10 +71,13 @@ public class AuthorizationActivity extends AppCompatActivity {
             }
             else if (jObj.getString("state").equals("ok")) {
                 JSONObject response = jObj.getJSONObject("response");
-                SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPref.edit();
+
+                SharedPreferences sharedPreferences = getSharedPreferences("current_id", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear();
                 editor.putInt("id", response.getInt("id"));
-                editor.commit();
+                editor.apply();
+
                 onLoginSuccess();
             }
         } catch (JSONException e) {

@@ -24,14 +24,11 @@ public class Profile {
 
     @Override
     public String toString() {
-        return "Profile{" +
-                "fullName='" + fullName + '\'' +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                ", numberPhone='" + numberPhone + '\'' +
-                ", modelPhone='" + modelPhone + '\'' +
-                ", id=" + id +
-                '}';
+        return "Full Name: \'" + fullName + '\'' +
+                "\nLogin: '" + login + '\'' +
+                "\nPassword: '" + password + '\'' +
+                "\nNumber Phone: '" + numberPhone + '\'' +
+                "\nModel Phone: '" + modelPhone + "\'";
     }
 
     public String getFullName() {
