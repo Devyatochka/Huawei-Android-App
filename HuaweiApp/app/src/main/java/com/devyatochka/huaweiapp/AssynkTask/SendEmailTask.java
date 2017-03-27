@@ -78,6 +78,7 @@ public class SendEmailTask extends AsyncTask<Void, Void, Boolean> {
     protected void onPostExecute(Boolean result) {
         super.onPostExecute(result);
         progressDialog.dismiss();
+
         new CountDownTimer(500, 1000) {
 
             @Override
