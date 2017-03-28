@@ -61,28 +61,6 @@ public class MainMenuActivity extends AppCompatActivity {
 
 
         mWebView.loadUrl("http://consumer.huawei.com/ru/press/news/hw-484635.htm");
-        /*if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
-            // Use the API 11+ calls to disable the controls
-            // Use a seperate class to obtain 1.6 compatibility
-            new Runnable() {
-                public void run() {
-                    mWebView.getSettings().setDisplayZoomControls(false);
-                }
-            }.run();
-        } else {
-            final ZoomButtonsController zoom_controll;
-            try {
-                zoom_controll = (ZoomButtonsController) mWebView.getClass().getMethod("getZoomButtonsController").invoke(mWebView, null);
-                zoom_controll.getContainer().setVisibility(View.GONE);
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
-                e.printStackTrace();
-            } catch (NoSuchMethodException e) {
-                e.printStackTrace();
-            }
-
-        } */
         mWebView.getSettings().setBuiltInZoomControls(true);
         mWebView.getSettings().setDisplayZoomControls(false);
 
@@ -144,6 +122,19 @@ public class MainMenuActivity extends AppCompatActivity {
 
         SecondaryDrawerItem item3 = new SecondaryDrawerItem()
                 .withIdentifier(3)
+                .withName("Service")
+                .withIcon(R.drawable.ic_service_center)
+                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        Intent showService = new Intent(getApplicationContext(), ServiceActivity.class);
+                        startActivity(showService);
+                        return false;
+                    }
+                });
+
+        SecondaryDrawerItem item4 = new SecondaryDrawerItem()
+                .withIdentifier(4)
                 .withName(R.string.drawer_item_support)
                 .withIcon(R.drawable.ic_feedback)
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
@@ -151,8 +142,6 @@ public class MainMenuActivity extends AppCompatActivity {
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                         Intent sendEmail = new Intent(getApplicationContext(), SendEmailActivity.class);
                         startActivity(sendEmail);
-
-
                         return false;
                     }
                 });
@@ -170,7 +159,8 @@ public class MainMenuActivity extends AppCompatActivity {
                         item1,
                         new DividerDrawerItem(),
                         item2,
-                        item3
+                        item3,
+                        item4
                 )
                 .withSelectedItem(2)
                 .build();
