@@ -9,6 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.ZoomButtonsController;
 
 import com.devyatochka.huaweiapp.AssynkTask.ProfileTask;
 import com.devyatochka.huaweiapp.Helper.Profile;
@@ -26,26 +29,63 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.InvocationTargetException;
+
 /**
  * Created by alexbelogurow on 26.03.17.
  */
 
 public class MainMenuActivity extends AppCompatActivity {
 
+    private WebView mWebView;
     private Toolbar mToolBar;
     public static Profile profile;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mWebView = (WebView) findViewById(R.id.webViewMainMenu);
         mToolBar = (Toolbar) findViewById(R.id.toolbarMain);
         setSupportActionBar(mToolBar);
 
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         createNavigationDrawer();
+
+        mWebView.getSettings().setJavaScriptEnabled(true);
+        mWebView.setWebViewClient(new MyWebViewClient());
+
+
+        mWebView.loadUrl("http://consumer.huawei.com/ru/press/news/hw-484635.htm");
+        /*if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
+            // Use the API 11+ calls to disable the controls
+            // Use a seperate class to obtain 1.6 compatibility
+            new Runnable() {
+                public void run() {
+                    mWebView.getSettings().setDisplayZoomControls(false);
+                }
+            }.run();
+        } else {
+            final ZoomButtonsController zoom_controll;
+            try {
+                zoom_controll = (ZoomButtonsController) mWebView.getClass().getMethod("getZoomButtonsController").invoke(mWebView, null);
+                zoom_controll.getContainer().setVisibility(View.GONE);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+
+        } */
+        mWebView.getSettings().setBuiltInZoomControls(true);
+        mWebView.getSettings().setDisplayZoomControls(false);
+
 
 
         SharedPreferences sharedPreferences = getSharedPreferences("current_id", Context.MODE_PRIVATE);
@@ -159,6 +199,15 @@ public class MainMenuActivity extends AppCompatActivity {
             profile = new Profile(fullName, login, password, numberPhone, modelPhone, id);
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+    }
+
+    private class MyWebViewClient extends WebViewClient    {
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url)
+        {
+            view.loadUrl(url);
+            return true;
         }
     }
 }

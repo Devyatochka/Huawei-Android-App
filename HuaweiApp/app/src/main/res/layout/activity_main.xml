@@ -8,22 +8,6 @@
     android:orientation="vertical"
     >
 
-    <!--
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-
-        <android.support.v7.widget.Toolbar
-            android:elevation="4dp"
-            android:id="@+id/toolbarMain"
-            style="@style/Widget.AppCompat.Toolbar"
-            app:layout_scrollFlags="scroll|enterAlways"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </android.support.design.widget.AppBarLayout>
-    -->
     <android.support.design.widget.AppBarLayout
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
@@ -37,6 +21,9 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_of_main" />
+
 
 
 
